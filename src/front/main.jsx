@@ -1,29 +1,50 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import './index.css'  // Global styles for your application
-import { RouterProvider } from "react-router-dom";  // Import RouterProvider to use the router
-import { router } from "./routes";  // Import the router configuration
-import { StoreProvider } from './hooks/useGlobalReducer';  // Import the StoreProvider for global state management
-import { BackendURL } from './components/BackendURL';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-const Main = () => {
-    
-    if(! import.meta.env.VITE_BACKEND_URL ||  import.meta.env.VITE_BACKEND_URL == "") return (
-        <React.StrictMode>
-              <BackendURL/ >
-        </React.StrictMode>
-        );
+// Importación de componentes
+import { Home } from "./pages/Home";
+import { Signup } from "./pages/Signup";
+import { Login } from "./pages/Login";
+import { Private } from "./pages/Private";
+import { Layout } from "./pages/Layout";
+
+const AppRoutes = () => {
     return (
-        <React.StrictMode>  
-            {/* Provide global state to all components */}
-            <StoreProvider> 
-                {/* Set up routing for the application */} 
-                <RouterProvider router={router}>
-                </RouterProvider>
-            </StoreProvider>
-        </React.StrictMode>
+        <BrowserRouter basename={import.meta.env.VITE_BASENAME || ""}>
+            <Routes>
+                {/* El Layout envuelve a las demás rutas y usa <Outlet /> */}
+                <Route element={<Layout />}>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/signup" element={<Signup />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/private" element={<Private />} />
+                    {/* Ruta para errores 404 dentro de la app */}
+                    <Route path="*" element={<h1 className="text-center mt-5">Página no encontrada</h1>} />
+                </Route>
+            </Routes>
+        </BrowserRouter>
     );
-}
+};
 
-// Render the Main component into the root DOM element.
-ReactDOM.createRoot(document.getElementById('root')).render(<Main />)
+// Función para renderizar la aplicación
+const renderApp = () => {
+    const rootElement = document.getElementById('app');
+    
+    if (rootElement) {
+        const root = ReactDOM.createRoot(rootElement);
+        root.render(
+            <React.StrictMode>
+                <AppRoutes />
+            </React.StrictMode>
+        );
+    } else {
+        // Si sale este error, el problema está 100% en el index.html
+        console.error("Error crítico: No se encontró el elemento <div id='app'> en el index.html");
+    }
+};
+
+// Ejecutamos el renderizado
+renderApp();
+
+export default AppRoutes;

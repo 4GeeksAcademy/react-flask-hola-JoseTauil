@@ -1,39 +1,36 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        const response = await fetch(import.meta.env.VITE_BACKEND_URL + "/api/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password })
+        });
 
-    const resp = await fetch(import.meta.env.VITE_BACKEND_URL + "/api/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ email, password })
-    });
+        if (response.ok) {
+            const data = await response.json();
+            sessionStorage.setItem("token", data.token);
+            navigate("/private");
+        } else {
+            alert("Credenciales inválidas");
+        }
+    };
 
-    if (!resp.ok) {
-      alert("Error en login");
-      return;
-    }
-
-    const data = await resp.json();
-
-    if (data.token) {
-      sessionStorage.setItem("token", data.token);
-      window.location.href = "/private";
-    }
-  };
-
-  return (
-    <form onSubmit={handleSubmit}>
-      <h1>Login</h1>
-      <input type="email" onChange={e => setEmail(e.target.value)} />
-      <input type="password" onChange={e => setPassword(e.target.value)} />
-      <button>Login</button>
-    </form>
-  );
+    return (
+        <div className="container mt-5 w-50">
+            <form onSubmit={handleLogin} className="border p-4 rounded shadow">
+                <h2>Iniciar Sesión</h2>
+                <input type="email" className="form-control mb-3" placeholder="Email" onChange={e => setEmail(e.target.value)} required />
+                <input type="password" uncomfortable className="form-control mb-3" placeholder="Contraseña" onChange={e => setPassword(e.target.value)} required />
+                <button type="submit" className="btn btn-success w-100">Entrar</button>
+            </form>
+        </div>
+    );
 };

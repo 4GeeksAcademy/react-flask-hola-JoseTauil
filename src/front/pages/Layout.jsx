@@ -1,22 +1,13 @@
-import { Outlet } from "react-router-dom/dist"
-import ScrollToTop from "../components/ScrollToTop"
-import { Navbar } from "../components/Navbar"
-import { Footer } from "../components/Footer"
+import React from "react";
+import { Outlet } from "react-router-dom";
+import { Navbar } from "../components/Navbar"; 
 
-// Base component that maintains the navbar and footer throughout the page and the scroll to top functionality.
 export const Layout = () => {
     return (
-        <ScrollToTop>
+        <div>
             <Navbar />
-            <Outlet />
-            <Footer />
-        </ScrollToTop>
-    )
-}
-
-<button onClick={() => {
-    sessionStorage.removeItem("token");
-    window.location.href = "/login";
-}}>
-    Logout
-</button>
+            {/* Si no pones Outlet, las páginas (Home, Signup) no se renderizan */}
+            <Outlet /> 
+        </div>
+    );
+};
