@@ -1,22 +1,46 @@
-"""
-This module takes care of starting the API Server, Loading the DB and Adding the endpoints
-"""
-from flask import Flask, request, jsonify, url_for, Blueprint
+from flask import request, jsonify, Blueprint
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_jwt_extended import create_access_token, jwt_required
 from api.models import db, User
-from api.utils import generate_sitemap, APIException
-from flask_cors import CORS
 
 api = Blueprint('api', __name__)
 
-# Allow CORS requests to this API
-CORS(api)
+# SIGNUP
 
 
-@api.route('/hello', methods=['POST', 'GET'])
-def handle_hello():
+@api.route('/signup', methods=['POST'])
+def signup():
+    data = request.json
 
-    response_body = {
-        "message": "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
-    }
+    user = User(
+        email=data['email'],
+        password=generate_password_hash(data['password']),
+        is_active=True
+    )
 
-    return jsonify(response_body), 200
+    db.session.add(user)
+    db.session.commit()
+
+    return jsonify({"msg": "Usuario creado"}), 201
+
+
+# LOGIN
+@api.route('/login', methods=['POST'])
+def login():
+    data = request.json
+
+    user = User.query.filter_by(email=data['email']).first()
+
+    if not user or not check_password_hash(user.password, data['password']):
+        return jsonify({"msg": "Credenciales incorrectas"}), 401
+
+    token = create_access_token(identity=user.id)
+
+    return jsonify({"token": token}), 200
+
+
+# PRIVATE
+@api.route('/private', methods=['GET'])
+@jwt_required()
+def private():
+    return jsonify({"msg": "Acceso permitido"}), 200

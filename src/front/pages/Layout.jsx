@@ -8,8 +8,15 @@ export const Layout = () => {
     return (
         <ScrollToTop>
             <Navbar />
-                <Outlet />
+            <Outlet />
             <Footer />
         </ScrollToTop>
     )
 }
+
+<button onClick={() => {
+    sessionStorage.removeItem("token");
+    window.location.href = "/login";
+}}>
+    Logout
+</button>
