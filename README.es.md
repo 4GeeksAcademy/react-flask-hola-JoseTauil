@@ -79,3 +79,16 @@ Esta plantilla está 100% lista para desplegarse con Render.com y Heroku en cues
 Esta plantilla fue construida como parte del [Coding Bootcamp](https://4geeksacademy.com/us/coding-bootcamp) de 4Geeks Academy por [Alejandro Sanchez](https://twitter.com/alesanchezr) y muchos otros contribuyentes. Descubre más sobre nuestro [Curso de Desarrollador Full Stack](https://4geeksacademy.com/us/coding-bootcamps/part-time-full-stack-developer) y [Bootcamp de Ciencia de Datos](https://4geeksacademy.com/us/coding-bootcamps/datascience-machine-learning).
 
 Puedes encontrar otras plantillas y recursos como este en la [página de github de la escuela](https://github.com/4geeksacademy/).
+
+| Herramienta    | UI/UX | Costo | Velocidad | Dependencia de Plataforma | Control | Mantenibilidad | Calidad del Código | Reutilización | Tu Calificación (1-5) | Notas/Justificación                                               |
+| -------------- | ----- | ----- | --------- | ------------------------- | ------- | -------------- | ------------------ | ------------- | --------------------- | ----------------------------------------------------------------- |
+| Vercel v0      | 5     | 3     | 5         | 2                         | 2       | 1              | 5                  | 1             | 3                     | Genera interfaces rápido, pero con poco control del código.       |
+| Replit         | 4     | 1     | 4         | 1                         | 1       | 3              | 5                  | 1             | 3                     | Útil para programar online, pero limitado para proyectos grandes. |
+| Lovable        | 5     | 3     | 4         | 3                         | 3       | 3              | 4                  | 2             | 4                     | Muy bueno para prototipos rápidos con IA.                         |
+| Windsurf       | 3     | 5     | 3         | 5                         | 5       | 5              | 5                  | 5             | 5                     | Excelente para desarrollo avanzado con IA y alto control.         |
+| Cursor         | 2     | 4     | 3         | 5                         | 4       | 5              | 4                  | 5             | 5                     | Muy potente para desarrollo Full Stack y productividad.           |
+| ChatGPT        | 5     | 5     | 5         | 5                         | 4       | 4              | 4                  | 5             | 5                     | Herramienta clave para aprender, depurar y generar código.        |
+| GitHub Copilot | 4     | 4     | 5         | 5                         | 4       | 4              | 4                  | 4             | 4                     | Acelera escritura de código con sugerencias inteligentes.         |
+| VS Code        | 4     | 5     | 5         | 5                         | 5       | 5              | 5                  | 5             | 5                     | Entorno principal de desarrollo, muy flexible y extensible.       |
+
+
