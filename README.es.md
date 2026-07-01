@@ -1,94 +1,81 @@
-# Plantilla de WebApp con React JS y Flask API
+# Proyecto: Creando Tus Requisitos de Producto con IA 🚀
 
-Construye aplicaciones web usando React.js para el front end y python/flask para tu API backend.
+¡Bienvenido al proyecto **"Creando Tus Requisitos de Producto con IA"**! 👋 Este proyecto está diseñado para poner la teoría en práctica y construir una base sólida para el desarrollo de productos utilizando el poder de la Inteligencia Artificial y el enfoque **Vibe Coding**.
 
-- La documentación se puede encontrar aquí: https://4geeks.com/docs/start/react-flask-template
-- Aquí hay un video sobre [cómo usar esta plantilla](https://www.youtube.com/watch?v=qBz6Ddd2m38)
-- Integrado con Pipenv para la gestión de paquetes.
-- Despliegue rápido a Render [en solo unos pocos pasos aquí](https://4geeks.com/es/docs/start/despliega-con-render-com).
-- Uso del archivo .env.
-- Integración de SQLAlchemy para la abstracción de bases de datos.
+---
 
-### 1) Instalación:
+## 🎯 Información del Proyecto Académico
 
-> Si usas Github Codespaces (recomendado) o Gitpod, esta plantilla ya vendrá con Python, Node y la base de datos Posgres instalados. Si estás trabajando localmente, asegúrate de instalar Python 3.10, Node.
+### Objetivo del Proyecto
+Al completar este repositorio, se habrán alcanzado los siguientes hitos:
+*   Un **Planificador de Producto MVP** completado para una idea de producto real.
+*   Un **documento de requisitos de MVP (PRD)** generado por IA y adaptado al proyecto.
+*   **Experiencia práctica** en la creación y refinamiento de prompts de IA aplicados a la gestión de productos.
 
-Se recomienda instalar el backend primero, asegúrate de tener Python 3.10, Pipenv y un motor de base de datos (se recomienda Posgres).
+### Habilidades Adquiridas
+*   **Aplicación Práctica de IA:** Uso de modelos de lenguaje para agilizar la planificación.
+*   **Definición del Alcance de MVP:** Capacidad de destilar ideas complejas en características esenciales.
+*   **Ingeniería de Prompts:** Elaboración de instrucciones estructuradas para obtener resultados útiles.
+*   **Evaluación Crítica:** Análisis y refinamiento de contenido generado por IA.
 
-1. Instala los paquetes de python: `$ pipenv install`
-2. Crea un archivo .env basado en el .env.example: `$ cp .env.example .env`
-3. Instala tu motor de base de datos y crea tu base de datos, dependiendo de tu base de datos, debes crear una variable DATABASE_URL con uno de los valores posibles, asegúrate de reemplazar los valores con la información de tu base de datos:
+---
 
-| Motor     | DATABASE_URL                                        |
-| --------- | --------------------------------------------------- |
-| SQLite    | sqlite:////test.db                                  |
-| MySQL     | mysql://username:password@localhost:port/example    |
-| Postgres  | postgres://username:password@localhost:5432/example |
+## 🏆 PROYECTO DESARROLLADO: "FanZone Mundial"
 
-4. Migra las migraciones: `$ pipenv run migrate` (omite si no has hecho cambios en los modelos en `./src/api/models.py`)
-5. Ejecuta las migraciones: `$ pipenv run upgrade`
-6. Ejecuta la aplicación: `$ pipenv run start`
+A continuación se presenta el desarrollo completo de la aplicación, planificado y estructurado mediante asistencia de Inteligencia Artificial.
 
-> Nota: Los usuarios de Codespaces pueden conectarse a psql escribiendo: `psql -h localhost -U gitpod example`
+### 📋 ENTREGABLE 1: Planificador de Producto MVP
 
-### Deshacer una migración
+*   **Idea del Producto:** Una plataforma web interactiva donde los aficionados del fútbol pueden consultar los grupos del Mundial mediante un carrusel dinámico y debatir en vivo a través de un mini-foro integrado.
+*   **Propuesta de Valor Core:** Unificar en un solo lugar la consulta rápida de datos del torneo y la interacción social en tiempo real, evitando que el usuario disperse su atención en múltiples aplicaciones.
+*   **Características Clave (In Scope):**
+    *   [x] **Carrusel Dinámico:** Navegación horizontal entre los grupos (A-H) mostrando tablas de posiciones y partidos.
+    *   [x] **Autenticación Básica:** Registro e inicio de sesión seguro con correo, contraseña y *username* único.
+    *   [x] **Mini-Foro:** Chat público integrado debajo del carrusel con actualización de mensajes al instante.
+*   **Fuera de Alcance (Out of Scope - Futuras Fases):**
+    *   ❌ Sistema de pronósticos, quinielas o apuestas deportivas.
+    *   ❌ Perfiles avanzados de usuario con avatares o sistema de medallas.
+    *   ❌ Moderación automatizada de comentarios basada en IA.
 
-También puedes deshacer una migración ejecutando
+---
 
-```sh
-$ pipenv run downgrade
-```
+### 📄 ENTREGABLE 2: Documento de Requisitos del Producto (PRD)
 
-### Población de la tabla de usuarios en el backend
+#### 1. Historias de Usuario (User Stories)
 
-Para insertar usuarios de prueba en la base de datos, ejecuta el siguiente comando:
+> ⚽ **Historia 1: Visualización del Torneo**
+> * **Como** aficionado al fútbol,
+> * **quiero** interactuar con un carrusel dinámico que muestre los grupos del Mundial,
+> * **para** consultar rápidamente los partidos y la tabla de posiciones.
 
-```sh
-$ flask insert-test-users 5
-```
+> 💬 **Historia 2: Interacción Social**
+> * **Como** usuario autenticado,
+> * **quiero** enviar mensajes en el foro de discusión en tiempo real,
+> * **para** debatir y compartir mis reacciones en vivo con otros usuarios.
 
-Y verás el siguiente mensaje:
+> 🔑 **Historia 3: Gestión de Identidad**
+> * **Como** usuario nuevo,
+> * **quiero** registrar una cuenta con un nombre de usuario único,
+> * **para** que mis aportaciones en el foro aparezcan identificadas correctamente.
 
-```
-    Creating test users
-    test_user1@test.com created.
-    test_user2@test.com created.
-    test_user3@test.com created.
-    test_user4@test.com created.
-    test_user5@test.com created.
-    Users created successfully!
-```
+#### 2. Requisitos Técnicos Principales
+*   **Funcional (RF):** El sistema debe validar que los mensajes del foro contengan texto plano (máx. 280 caracteres) y renderizarlos de forma cronológica descendente.
+*   **No Funcional (RNF):** La distribución de los mensajes en el foro a los clientes conectados debe realizarse en un tiempo menor a 500ms (Tiempo Real). La interfaz debe ser completamente responsiva (*Mobile-First*).
 
-### **Nota importante para la base de datos y los datos dentro de ella**
+#### 3. Stack Tecnológico Sugerido
 
-Cada entorno de Github Codespace tendrá **su propia base de datos**, por lo que si estás trabajando con más personas, cada uno tendrá una base de datos diferente y diferentes registros dentro de ella. Estos datos **se perderán**, así que no pases demasiado tiempo creando registros manualmente para pruebas, en su lugar, puedes automatizar la adición de registros a tu base de datos editando el archivo ```commands.py``` dentro de la carpeta ```/src/api```. Edita la línea 32 de la función ```insert_test_data``` para insertar los datos según tu modelo (usa la función ```insert_test_users``` anterior como ejemplo). Luego, todo lo que necesitas hacer es ejecutar ```pipenv run insert-test-data```.
+| Capa | Tecnología | Razón de Selección |
+| :--- | :--- | :--- |
+| **Frontend** | React.js | Excelente manejo de estados dinámicos para el carrusel y el chat interactivo. |
+| **Backend** | Python (FastAPI / Flask) | Ligero, rápido y con soporte óptimo para conexiones asíncronas. |
+| **Base de Datos**| PostgreSQL | Estructura relacional robusta para asegurar la integridad de usuarios y mensajes. |
 
-### Instalación manual del Front-End:
+---
 
--   Asegúrate de estar usando la versión 20 de node y de que ya hayas instalado y ejecutado correctamente el backend.
+## 🤖 Ingeniería de Prompts Utilizada
 
-1. Instala los paquetes: `$ npm install`
-2. ¡Empieza a codificar! inicia el servidor de desarrollo de webpack `$ npm run start`
+Para generar este documento de requisitos, se utilizó un prompt estructurado definiendo un rol experto a la IA:
 
-## ¡Publica tu sitio web!
-
-Esta plantilla está 100% lista para desplegarse con Render.com y Heroku en cuestión de minutos. Por favor, lee la [documentación oficial al respecto](https://4geeks.com/docs/start/deploy-to-render-com).
-
-### Contribuyentes
-
-Esta plantilla fue construida como parte del [Coding Bootcamp](https://4geeksacademy.com/us/coding-bootcamp) de 4Geeks Academy por [Alejandro Sanchez](https://twitter.com/alesanchezr) y muchos otros contribuyentes. Descubre más sobre nuestro [Curso de Desarrollador Full Stack](https://4geeksacademy.com/us/coding-bootcamps/part-time-full-stack-developer) y [Bootcamp de Ciencia de Datos](https://4geeksacademy.com/us/coding-bootcamps/datascience-machine-learning).
-
-Puedes encontrar otras plantillas y recursos como este en la [página de github de la escuela](https://github.com/4geeksacademy/).
-
-| Herramienta    | UI/UX | Costo | Velocidad | Dependencia de Plataforma | Control | Mantenibilidad | Calidad del Código | Reutilización | Tu Calificación (1-5) | Notas/Justificación                                               |
-| -------------- | ----- | ----- | --------- | ------------------------- | ------- | -------------- | ------------------ | ------------- | --------------------- | ----------------------------------------------------------------- |
-| Vercel v0      | 5     | 3     | 5         | 2                         | 2       | 1              | 5                  | 1             | 3                     | Genera interfaces rápido, pero con poco control del código.       |
-| Replit         | 4     | 1     | 4         | 1                         | 1       | 3              | 5                  | 1             | 3                     | Útil para programar online, pero limitado para proyectos grandes. |
-| Lovable        | 5     | 3     | 4         | 3                         | 3       | 3              | 4                  | 2             | 4                     | Muy bueno para prototipos rápidos con IA.                         |
-| Windsurf       | 3     | 5     | 3         | 5                         | 5       | 5              | 5                  | 5             | 5                     | Excelente para desarrollo avanzado con IA y alto control.         |
-| Cursor         | 2     | 4     | 3         | 5                         | 4       | 5              | 4                  | 5             | 5                     | Muy potente para desarrollo Full Stack y productividad.           |
-| ChatGPT        | 5     | 5     | 5         | 5                         | 4       | 4              | 4                  | 5             | 5                     | Herramienta clave para aprender, depurar y generar código.        |
-| GitHub Copilot | 4     | 4     | 5         | 5                         | 4       | 4              | 4                  | 4             | 4                     | Acelera escritura de código con sugerencias inteligentes.         |
-| VS Code        | 4     | 5     | 5         | 5                         | 5       | 5              | 5                  | 5             | 5                     | Entorno principal de desarrollo, muy flexible y extensible.       |
-
+```text
+"Actúa como un Product Manager Senior experto en metodologías ágiles. Estoy haciendo un proyecto para 4Geeks Academy donde debo definir los requisitos de un MVP asistido por IA. Mi idea es una Aplicación Web para el Mundial de Fútbol con un carrusel interactivo y un foro en tiempo real. Genera el alcance del MVP, lo que queda fuera, 3 historias de usuario y un tech stack sugerido."
 
